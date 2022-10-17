@@ -1,0 +1,97 @@
+h1 {
+    color: #6c0808;
+    font-family: arial, sans-serif;
+    font-size: 45px;
+    font-weight: bold;
+    margin-top: 25px;
+    margin-bottom: 1px;
+    text-align: center;
+}
+body {
+    background: #b9d2e0;
+    color: #f8f8f8;
+}
+#gameContainer {
+    display: grid;
+    grid-template-columns: 100px 100px 100px 100px;
+    grid-template-rows: 100px 100px 100px 100px;
+    width: 435px;
+    height: 435px;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    position: relative;
+    background-color: #dc7575;
+    border: 1px solid black;
+
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 10px;
+}
+.button-center {
+    position: relative;
+    display: block;
+    text-align: center;
+}
+#startBtn {
+    text-align: center;
+    display: inline-block;
+    overflow: hidden;
+    border:none;
+    border-radius:10px;
+    background-color:#6c0808;
+    color: #fff;
+    padding:15px;
+    min-height:30px;
+    min-width: 120px;
+    cursor: pointer;
+}
+#startBtn:active {
+    background-color: #ffbf00;
+}
+#startBtn:hover {
+    background-color: #9d742a;
+    transition: 0.7s;
+}
+#startBtn:disabled {
+    background-color: #53778f;
+    transition: 0.7s;
+    cursor: default;
+}
+svg {
+    background-color: #f0e3e3;
+    border: 1px solid #964444;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    transform: rotateY(180deg);
+}
+.card{
+    transform-style: preserve-3d;
+}
+.frontCard {
+    position: absolute;
+    z-index: 10;
+    background-color: #5b0808;
+    border: 1px solid #8e5e5e;
+    width: 100px;
+    height: 100px;
+    backface-visibility: hidden;
+}
+.timer{
+    color: #6c0808;
+    font-family: arial, sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 auto;
+}
+
+
+
