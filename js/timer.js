@@ -1,13 +1,22 @@
+/**
+ * timer logic
+ */
 export class Timer {
-    constructor(duration, display) {
+    constructor(duration, display, game) {
         this.duration = duration;
         this.display = display;
         this.isPaused = false;
+        this.game = game;
+        this.interval = null;
+        this.timeIsOut = true;
     }
 
     startTimer() {
-        var timer = this.duration, minutes, seconds;
-        this.interval =  setInterval(() => {
+        var timer = this.duration,
+            minutes,
+            seconds;
+        this.interval = setInterval(() => {
+            this.timeIsOut = false;
             if (!this.isPaused) {
                 minutes = parseInt(timer / 60, 10);
                 seconds = parseInt(timer % 60, 10);
@@ -17,10 +26,16 @@ export class Timer {
 
                 this.display.textContent = minutes + ":" + seconds;
                 if (--timer < 0) {
-                    clearInterval(this.interval);
+                    this.stopTimer();
+                    this.game.checkEndGame(this);
                 }
             }
         }, 1000);
+    }
+
+    stopTimer() {
+        this.timeIsOut = true;
+        clearInterval(this.interval);
     }
 
     pauseTimer() {

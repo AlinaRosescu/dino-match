@@ -1,3 +1,6 @@
+/**
+ * includes logic for individual cards
+ */
 export class Card {
     constructor(game = [], svgAssetsLoader, svgElement, row, column) {
         this.game = game;
@@ -6,9 +9,14 @@ export class Card {
         this.row = Number(row);
         this.column = Number(column);
         this.isFlipped = false;
+        this.isEnabled = false;
         this.card;
     }
 
+    /**
+     * add the svg image and the div to hold it
+     * @returns {HTMLDivElement}
+     */
     createCard() {
         if (this.svgElement.cards !== 2) {
             // create a svg <<use>> element to duplicate the svg and add it to another div
@@ -28,19 +36,19 @@ export class Card {
         card.classList.add("card");
         card.setAttribute("id", this.svgElement.color);
         card.appendChild(this.svgElement.element);
-        card.setAttribute(
-            "style",
-            "grid-area:" + this.row + " / " + this.column + " / " + this.row + " / " + this.column
-        );
-        card.setAttribute("grid-column", this.column + " / span 1");
-        card.setAttribute("grid-row", this.row + " / span 1");
+        card.style.gridArea = `${this.column} / ${this.row} / ${this.column + 1} / ${this.row + 1}`;
+        this.card = card;
         this.addOnClickBtnEvent(card);
         const frontCard = this.getFrontCard();
         card.appendChild(frontCard);
-        this.card = card;
+
         return card;
     }
 
+    /**
+     * create a div with a full background color that will hide the svg image
+     * @returns {HTMLDivElement}
+     */
     getFrontCard() {
         let frontCard = document.createElement("div");
         frontCard.classList.add("frontCard");
@@ -48,15 +56,27 @@ export class Card {
         return frontCard;
     }
 
+    /**
+     * add click event for the div holding the 2 card faces
+     * @param card
+     */
     addOnClickBtnEvent(card) {
         var playing = false;
-        card.addEventListener("click", () => {
-            if (playing) return;
-            playing = true;
-            this.flipCard(card, () => (playing = false));
-        });
+        this.isEnabled = true;
+        card.addEventListener("click", this.onClickEvent.bind(this, playing));
     }
 
+    onClickEvent(playing) {
+        if (playing || !this.isEnabled) return;
+        playing = true;
+        this.flipCard(this.card, () => (playing = false));
+    }
+
+    /**
+     * animate the card to show the svg image to the user
+     * @param card
+     * @param onComplete
+     */
     flipCard(card, onComplete) {
         if (this.isFlipped) return;
         this.isFlipped = true;
@@ -67,6 +87,11 @@ export class Card {
         this.animateCard(card, onCompleteAnimation);
     }
 
+    /**
+     * Flip animation
+     * @param card
+     * @param onComplete
+     */
     animateCard(card, onComplete) {
         anime({
             targets: card,
@@ -78,9 +103,16 @@ export class Card {
         });
     }
 
+    /**
+     * flip the card back to show the full background div
+     */
     flipCardBack() {
         this.animateCard(this.card, () => {
             this.isFlipped = false;
         });
+    }
+
+    disableClick() {
+        this.isEnabled = false;
     }
 }

@@ -3,7 +3,7 @@ h1 {
     font-family: arial, sans-serif;
     font-size: 45px;
     font-weight: bold;
-    margin-top: 25px;
+    margin-top: 10px;
     margin-bottom: 1px;
     text-align: center;
 }
@@ -19,7 +19,7 @@ body {
     height: 435px;
     grid-column-gap: 10px;
     grid-row-gap: 10px;
-    position: relative;
+    /*position: relative;*/
     background-color: #dc7575;
     border: 1px solid black;
 
@@ -30,8 +30,8 @@ body {
 
     margin-left: auto;
     margin-right: auto;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 25px;
+    margin-bottom: 25px;
     padding: 10px;
 }
 .button-center {
@@ -84,14 +84,16 @@ svg {
     height: 100px;
     backface-visibility: hidden;
 }
-.timer{
+.timer,
+#result{
     color: #6c0808;
     font-family: arial, sans-serif;
     font-size: 25px;
     font-weight: bold;
     text-align: center;
-    margin: 0 auto;
+    margin: 10px 0 0 auto;
 }
+
 
 
 
