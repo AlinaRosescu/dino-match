@@ -65,4 +65,13 @@ export class MatchGrid {
             this.cards[i].disableClick();
         }
     }
+
+    resetGrid() {
+        for (let i = 0; i < this.cards.length; i++) {
+            this.cards[i].resetCard();
+        }
+        this.cards = [];
+        this.svgElements = [];
+
+    }
 }

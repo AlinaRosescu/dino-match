@@ -115,4 +115,8 @@ export class Card {
     disableClick() {
         this.isEnabled = false;
     }
+
+    resetCard() {
+        this.card.remove();
+    }
 }

@@ -78,7 +78,7 @@ svg {
 .frontCard {
     position: absolute;
     z-index: 10;
-    background-color: #5b0808;
+    /*background-color: #5b0808;*/
     border: 1px solid #8e5e5e;
     width: 100px;
     height: 100px;

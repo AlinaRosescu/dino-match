@@ -36,6 +36,7 @@ export class Timer {
     stopTimer() {
         this.timeIsOut = true;
         clearInterval(this.interval);
+        this.interval = null;
     }
 
     pauseTimer() {

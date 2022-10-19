@@ -51,6 +51,8 @@ export class Game {
         if (this.numberOfMatches === this.totalNumberOfMatches) {
             document.getElementById("result").textContent = "You won!";
             timer.stopTimer();
+
+            this.resetStartButton();
         } else {
             if (timer !== null && timer.timeIsOut) {
                 if (this.flippedCards.length > 0) {
@@ -61,7 +63,31 @@ export class Game {
                 }
                 this.grid.endGrid();
                 document.getElementById("result").textContent = "You lost! :(";
+                this.resetStartButton();
             }
         }
+    }
+
+    resetStartButton() {
+        const button = document.querySelector("#startBtn");
+        button.addEventListener("click", () => {
+            button.setAttribute("disabled", "");
+            this.grid.resetGrid();
+            this.resetGame();
+        }, true);
+        button.removeAttribute("disabled", "");
+        button.textContent = "Replay";
+    }
+
+    resetGame() {
+        this.resetTimer();
+        this.resetResultText();
+    }
+    resetTimer() {
+        document.querySelector("#time").textContent = "";
+    }
+
+    resetResultText() {
+        document.getElementById("result").textContent = "";
     }
 }
