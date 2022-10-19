@@ -28,7 +28,7 @@ export class SvgAssetsLoader {
      * @returns {Promise<string>}
      */
     async fetchData(svgName) {
-        const response = await fetch("../assets/" + svgName + ".svg");
+        const response = await fetch("assets/" + svgName + ".svg");
         if (!response.ok) {
             throw new Error(`HTTP error: ${response.status}`);
         }
