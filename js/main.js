@@ -13,20 +13,18 @@ function init() {
     gameContainer.style.setProperty("--grid-cols", columns);
 
     const colors = Utils.generateHslaColors(100, 40, rows + columns);
-
+    const button = document.querySelector("#startBtn");
     // load svg assets and add grid
-    let grid;
+
     svgAssetsLoader
         .loadAssets()
-        .then((response) => (grid = new MatchGrid(svgAssetsLoader, gameContainer, rows, columns, colors, 2)));
-
-    const button = document.querySelector("#startBtn");
-    button.addEventListener("click", onStartBtnClickEvent);
-
-    function onStartBtnClickEvent() {
-        button.setAttribute("disabled", "");
-        grid.createGrid();
-    }
+        .then((response) => (new MatchGrid(svgAssetsLoader, gameContainer, rows, columns, colors, 2)))
+        .then((grid) => {
+            button.addEventListener("click", () => {
+                button.setAttribute("disabled", "");
+                grid.createGrid();
+            });
+        });
 }
 // wait for the HTML to load
 document.addEventListener("DOMContentLoaded", init);
