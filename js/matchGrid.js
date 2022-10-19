@@ -7,7 +7,7 @@ import { Game } from "./game.js";
  * includes the grid logic and its variables
  */
 export class MatchGrid {
-    constructor(svgAssetsLoader = {}, gameContainer = {}, rows = 4, columns = 4, colors = [], timeLimit = 2) {
+    constructor(svgAssetsLoader = {}, gameContainer = {}, rows = 4, columns = 4, colors = [], timeLimit = 1) {
         this.game = new Game(rows + columns, this);
         this.columns = columns;
         this.rows = rows;
